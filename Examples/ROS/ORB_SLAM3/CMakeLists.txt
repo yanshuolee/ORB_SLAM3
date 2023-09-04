@@ -28,6 +28,8 @@ else()
    message(FATAL_ERROR "The compiler ${CMAKE_CXX_COMPILER} has no C++11 support. Please use a different C++ compiler.")
 endif()
 
+add_definitions(-w) ##################################################
+
 LIST(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/../../../cmake_modules)
 
 find_package(OpenCV 4.4 QUIET)
@@ -35,7 +37,10 @@ if(NOT OpenCV_FOUND)
 	message(FATAL_ERROR "OpenCV > 4.4 not found.")
 endif()
 
-find_package(Eigen3 3.1.0 REQUIRED)
+find_package(Eigen3 3.3.0 REQUIRED)
+if(NOT Eigen3_FOUND)
+	message(FATAL_ERROR "Eigen3 not found.")
+endif()
 find_package(Pangolin REQUIRED)
 
 include_directories(
@@ -45,6 +50,7 @@ ${PROJECT_SOURCE_DIR}/../../../include
 ${PROJECT_SOURCE_DIR}/../../../include/CameraModels
 ${PROJECT_SOURCE_DIR}/../../../Thirdparty/Sophus
 ${Pangolin_INCLUDE_DIRS}
+"/usr/local/include/eigen3/"
 )
 
 set(LIBS 

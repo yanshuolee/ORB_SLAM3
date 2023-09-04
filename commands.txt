@@ -1,0 +1,7 @@
+export ROS_PACKAGE_PATH=${ROS_PACKAGE_PATH}:/home/rsl/Desktop/ysl/ORB_SLAM3/Examples/ROS/ORB_SLAM3
+
+
+rospack find ORB_SLAM3
+pkg-config --modversion eigen3
+
+rosrun ORB_SLAM3 Stereo Vocabulary/ORBvoc.txt /home/rsl/Desktop/ysl/ORB_SLAM3/Examples/Stereo/RealSense_T265.yaml false
